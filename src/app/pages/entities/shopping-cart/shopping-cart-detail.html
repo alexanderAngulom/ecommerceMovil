@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Shopping Cart</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item>
+      <ion-label position="fixed">Id</ion-label>
+      <div item-content>
+        <span id="id-content">{{shoppingCart.id}}</span>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Placed Date</ion-label>
+      <div item-content>
+        <span id="placedDate-content">{{shoppingCart.placedDate | date:'medium'}}</span>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Status</ion-label>
+      <div item-content>
+        <span id="status-content">{{shoppingCart.status}}</span>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Total Price</ion-label>
+      <div item-content>
+        <span id="totalPrice-content">{{shoppingCart.totalPrice}}</span>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Payment Method</ion-label>
+      <div item-content>
+        <span id="paymentMethod-content">{{shoppingCart.paymentMethod}}</span>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Payment Reference</ion-label>
+      <div item-content>
+        <span id="paymentReference-content">{{shoppingCart.paymentReference}}</span>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label>Customer Details</ion-label>
+      <div item-content *ngIf="shoppingCart.customerDetails">
+        <a>{{shoppingCart.customerDetails?.id}}</a>
+      </div>
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="block" color="primary" (click)="open(shoppingCart)">{{ 'EDIT_BUTTON' | translate }}</ion-button>
+  <ion-button expand="block" color="danger" (click)="deleteModal(shoppingCart)">{{ 'DELETE_BUTTON' | translate }}</ion-button>
+</ion-content>

@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Shopping Cart</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button [disabled]="!isReadyToSave" (click)="save()" color="primary">
+        <span *ngIf="platform.is('ios')">{{'DONE_BUTTON' | translate}}</span>
+        <ion-icon name="checkmark" *ngIf="!platform.is('ios')"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form *ngIf="form" name="form" [formGroup]="form" (ngSubmit)="save()">
+    <ion-list>
+      <ion-item [hidden]="!form.id">
+        <ion-label>ID</ion-label>
+        <ion-input type="hidden" id="id" formControlName="id" readonly></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Placed Date</ion-label>
+        <ion-datetime displayFormat="MM/DD/YYYY HH:mm" formControlName="placedDate" id="field_placedDate"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label>Status</ion-label>
+        <ion-select formControlName="status" id="field_status" required>
+          <ion-select-option value="COMPLETED">COMPLETED</ion-select-option>
+          <ion-select-option value="PAID">PAID</ion-select-option>
+          <ion-select-option value="PENDING">PENDING</ion-select-option>
+          <ion-select-option value="CANCELLED">CANCELLED</ion-select-option>
+          <ion-select-option value="REFUNDED">REFUNDED</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Total Price</ion-label>
+        <ion-input type="number" name="totalPrice" formControlName="totalPrice"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Payment Method</ion-label>
+        <ion-select formControlName="paymentMethod" id="field_paymentMethod" required>
+          <ion-select-option value="CREDIT_CARD">card</ion-select-option>
+          <ion-select-option value="IDEAL">ideal</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Payment Reference</ion-label>
+        <ion-input type="text" name="paymentReference" formControlName="paymentReference"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Customer Details</ion-label>
+        <ion-select id="field_customerDetails" formControlName="customerDetails" [compareWith]="compareCustomerDetails" required>
+          <ion-select-option *ngIf="!form.value.customerDetails" [value]="null" selected></ion-select-option>
+          <ion-select-option
+            [value]="customerDetailsOption"
+            *ngFor="let customerDetailsOption of customerDetails; trackBy: trackCustomerDetailsById"
+            >{{customerDetailsOption.id}}</ion-select-option
+          >
+        </ion-select>
+      </ion-item>
+      <div [hidden]="!(form.controls.?.dirty && form.controls.?.invalid)">
+        <small [hidden]="!form.controls.?.errors?.required"> This field is required. </small>
+      </div>
+    </ion-list>
+  </form>
+</ion-content>

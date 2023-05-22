@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Product Order</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item>
+      <ion-label position="fixed">Id</ion-label>
+      <div item-content>
+        <span id="id-content">{{productOrder.id}}</span>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Quantity</ion-label>
+      <div item-content>
+        <span id="quantity-content">{{productOrder.quantity}}</span>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Total Price</ion-label>
+      <div item-content>
+        <span id="totalPrice-content">{{productOrder.totalPrice}}</span>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label>Product</ion-label>
+      <div item-content *ngIf="productOrder.product">
+        <a>{{productOrder.product?.name}}</a>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label>Cart</ion-label>
+      <div item-content *ngIf="productOrder.cart">
+        <a>{{productOrder.cart?.id}}</a>
+      </div>
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="block" color="primary" (click)="open(productOrder)">{{ 'EDIT_BUTTON' | translate }}</ion-button>
+  <ion-button expand="block" color="danger" (click)="deleteModal(productOrder)">{{ 'DELETE_BUTTON' | translate }}</ion-button>
+</ion-content>

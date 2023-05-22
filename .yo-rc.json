@@ -1,0 +1,26 @@
+{
+  "generator-jhipster": {
+    "authenticationType": "jwt",
+    "baseName": "ecommerceMavenIonic",
+    "blueprints": [
+      {
+        "name": "generator-jhipster-ionic",
+        "version": "8.1.0"
+      }
+    ],
+    "enableTranslation": false,
+    "jhipsterVersion": "7.9.3",
+    "otherModules": [
+      {
+        "name": "generator-jhipster-ionic",
+        "version": "8.1.0"
+      }
+    ],
+    "prettierDefaultIndent": 2,
+    "projectName": "Ecommerce MavenIonic"
+  },
+  "generator-jhipster-ionic": {
+    "appDir": "C:\\Desarrollo\\proyectosPublicos\\ecommerceMaven",
+    "ionicDir": null
+  }
+}

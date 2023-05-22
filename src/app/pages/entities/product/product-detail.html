@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Product</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item>
+      <ion-label position="fixed">Id</ion-label>
+      <div item-content>
+        <span id="id-content">{{product.id}}</span>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Name</ion-label>
+      <div item-content>
+        <span id="name-content">{{product.name}}</span>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Description</ion-label>
+      <div item-content>
+        <span id="description-content">{{product.description}}</span>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Price</ion-label>
+      <div item-content>
+        <span id="price-content">{{product.price}}</span>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Product Size</ion-label>
+      <div item-content>
+        <span id="productSize-content">{{product.productSize}}</span>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Image</ion-label>
+      <div item-content>
+        <div id="image-content" *ngIf="product.image">
+          <a (click)="openFile(product.imageContentType, product.image)">
+            <img [src]="'data:' + product.imageContentType + ';base64,' + product.image" style="max-width: 100%" alt="product image" />
+          </a>
+          {{product.imageContentType}}, {{byteSize(product.image)}}
+        </div>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label>Product Category</ion-label>
+      <div item-content *ngIf="product.productCategory">
+        <a>{{product.productCategory?.name}}</a>
+      </div>
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="block" color="primary" (click)="open(product)">{{ 'EDIT_BUTTON' | translate }}</ion-button>
+  <ion-button expand="block" color="danger" (click)="deleteModal(product)">{{ 'DELETE_BUTTON' | translate }}</ion-button>
+</ion-content>

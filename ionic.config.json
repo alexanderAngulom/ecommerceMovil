@@ -1,0 +1,7 @@
+{
+  "name": "ecommerceMavenIonic",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
