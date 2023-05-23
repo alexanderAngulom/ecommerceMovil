@@ -16,6 +16,7 @@ import { ProductCategory, ProductCategoryService } from '../product-category';
   templateUrl: 'product-update.html',
 })
 export class ProductUpdatePage implements OnInit {
+  [x: string]: any;
   product: Product;
   productCategories: ProductCategory[];
   imageOptions: ImageOptions;
